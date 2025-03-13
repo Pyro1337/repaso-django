@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project List</title>
+</head>
+<body>
+    {%extends './nav-bar.html'%}
+    {% block content %}
+        {% for project in projects %}
+            <h2>Nombre del Proyecto: {{ project.name }} Estado : 
+                {%if project.finished == True %}
+                    ✔️Finalizado
+                {% else %}
+                    ✖️ Pendiente
+                {% endif %}
+            </h2>
+            <ul>
+                {% for task in tasks %}
+                    {% if task.project.id == project.id %}
+                        <li>
+                            <strong>{{ task.title }}</strong>: {{ task.description }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {%endblock%}
+</body>
+</html>

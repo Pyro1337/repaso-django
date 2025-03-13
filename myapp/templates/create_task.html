@@ -1,0 +1,24 @@
+{% extends 'nav-bar.html' %} 
+
+{% block content %}
+<h2>Crear Tarea</h2>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <label for="project">Selecciona un Proyecto:</label>
+    <select name="project" id="project" required>
+        <option value="" disabled selected>-- Selecciona un Proyecto --</option>
+        {% for project in projects %}
+            <option value="{{ project.id }}">{{ project.name }}</option>
+        {% endfor %}
+    </select>
+
+    {{ form.as_p }} <!-- Renderiza el formulario en formato de párrafo -->
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}
