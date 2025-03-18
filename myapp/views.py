@@ -2,10 +2,31 @@ from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Project,Task
+from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth.models import User #Importamos el modelo de usuario
 from .forms import CreateNewTask,CreateNewProject #importamos el formulario
 
 # Create your views here.
-def initial_salute(request):
+def signup(request):
+    if request.method == 'GET':
+         return render(request,"signup.html",{
+        'form':UserCreationForm
+        })
+    else:
+        if request.POST['password1'] == request.POST['password2']:
+            try:
+                user = User.objects.create_user(username= request.POST['username'], password = request.POST['password1'])
+                user.save()
+                return HttpResponse('Usuario creado con exito')
+            except:
+                return HttpResponse('El usuario ya existe')
+        return HttpResponse('Las contraseñas no coinciden')
+
+
+   
+
+
+def landing_page(request):
     return render(request,"index.html")
 
 def specific_salute(request, username):

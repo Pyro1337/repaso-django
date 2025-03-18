@@ -1,10 +1,11 @@
 from django.urls import path #importamos path de django
-from myapp.views  import initial_salute,about,specific_salute,specific_project,projects,specific_task,tasks,create_task,create_project #importamos los views de este modulo
+from myapp.views  import signup,landing_page,about,specific_salute,specific_project,projects,specific_task,tasks,create_task,create_project 
 
 
 #Creamos y colocamos las rutas aqui
 urlpatterns = [
-    path('',initial_salute),
+    path('',signup),
+    path('landing_page/',landing_page),
     path('about/',about),
     path('<str:username>',specific_salute),
     path('projects/',projects),
