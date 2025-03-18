@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\MSI\Desktop\Proyectos GITHUB\repaso-django\venv"
+VIRTUAL_ENV="C:\Users\user\Desktop\Proyectos GITHUB\repaso-django\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
