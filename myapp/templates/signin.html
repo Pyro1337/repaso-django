@@ -1,0 +1,14 @@
+{% block content %}
+    <h2>Iniciar Sesión</h2>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form  method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ingresar</button>
+        <button type="button" onclick="window.location.href='/'">Cancelar</button>
+    </form>
+    <h2>No tienes una cuenta? <a href="/signup/">Registrate</a></h2>
+    
+{% endblock %}
