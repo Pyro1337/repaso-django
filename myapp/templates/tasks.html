@@ -9,7 +9,7 @@
     {%extends './nav-bar.html'%}
     {% block content %}
         {% for project in projects %}
-            <h2>Nombre del Proyecto: {{ project.name }} Estado : 
+            <h2>Nombre del Proyecto: {{ project.title }} Estado : 
                 {%if project.finished == True %}
                     ✔️Finalizado
                 {% else %}
@@ -20,7 +20,24 @@
                 {% for task in tasks %}
                     {% if task.project.id == project.id %}
                         <li>
-                            <strong>{{ task.title }}</strong>: {{ task.description }}
+                            <p>
+                                <strong>
+                                    Titulo : 
+                                </strong>{{ task.title }} 
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <strong>
+                                    Descripcion:
+                                </strong>
+                                {{ task.description }} 
+                            </p>
+                        </li>    
+                        <li>
+                            <strong>
+                                Assignado a: 
+                            </strong> {{ task.userasigned }}
                         </li>
                     {% endif %}
                 {% endfor %}

@@ -79,7 +79,7 @@ def about(request):
 
 def specific_project(request, id):
     projects = get_object_or_404(Project, id=id)
-    return HttpResponse("<h2>Nombre del proyecto: %s</h2>" % projects.name)
+    return HttpResponse("<h2>Nombre del proyecto: %s</h2>" % projects.title)
 
 
 def projects(request):
@@ -125,7 +125,11 @@ def create_task(request):
             Task.objects.create(
                 title=form.cleaned_data['title'],
                 description=form.cleaned_data['description'],
+                important = form.cleaned_data['important'],
+                status = form.cleaned_data['status'],
+                userasigned = form.cleaned_data['userasigned'],
                 project=project
+                
             )
             return redirect('/tasks/')
         else:
@@ -145,8 +149,9 @@ def create_project(request):
         form = CreateNewProject(request.POST)
         if form.is_valid():
             Project.objects.create(
-                name=form.cleaned_data['name'],
-                description=form.cleaned_data['description']
+                title=form.cleaned_data['title'],
+                description=form.cleaned_data['description'],
+                creator = form.cleaned_data['creator']
             )
             return redirect('/projects/')
         else:

@@ -14,7 +14,7 @@
     <select name="project" id="project" required>
         <option value="" disabled selected>-- Selecciona un Proyecto --</option>
         {% for project in projects %}
-            <option value="{{ project.id }}">{{ project.name }}</option>
+            <option value="{{ project.id }}">{{ project.title }}</option>
         {% endfor %}
     </select>
 
